@@ -104,6 +104,31 @@ def start_game():
         # Display the updated board
         render_display()
 
+
+# Check if any row has all the same value and is not empty
+def evaluate_rows():
+    global game_in_progress
+
+    rows = [(0, 1, 2), (3, 4, 5), (6, 7, 8)]
+    for row in rows:
+        if game_board[row[0]] == game_board[row[1]] == game_board[row[2]] != '-':
+            game_in_progress = False
+            return game_board[row[0]]
+    return None
+
+
+# Check if any column has all the same value and is not empty
+def evaluate_columns():
+    global game_in_progress
+
+    columns = [(0, 3, 6), (1, 4, 7), (2, 5, 8)]
+    for col in columns:
+        if game_board[col[0]] == game_board[col[1]] == game_board[col[2]] != '-':
+            game_in_progress = False
+            return game_board[col[0]]
+    return None
+
+
 # Flips player, after players turn
 def switch_player():
     global active_player
