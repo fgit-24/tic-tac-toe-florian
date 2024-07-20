@@ -16,6 +16,9 @@
 
 
 
+# ----- Global Variables Start -----
+
+
 
 # Game board represented as a list of 9 elements
 game_board = ['-', '-', '-',
@@ -31,6 +34,15 @@ def current_state():
     print()
 
 current_state()
+
+
+# Variable to keep track of the current player ('X' or 'O')
+active_player = "X"
+
+
+
+# ----- Global Variables End -----
+
 
 
 valid_move = False
