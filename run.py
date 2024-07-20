@@ -129,6 +129,18 @@ def evaluate_columns():
     return None
 
 
+    # Check if any diagonal has all the same value and is not empty
+def evaluate_diagonals():
+    global game_in_progress
+
+    diagonals = [(0, 4, 8), (2, 4, 6)]
+    for diag in diagonals:
+        if game_board[diag[0]] == game_board[diag[1]] == game_board[diag[2]] != '-':
+            game_in_progress = False
+            return game_board[diag[0]]
+    return None
+
+
 # Flips player, after players turn
 def switch_player():
     global active_player
