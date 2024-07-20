@@ -18,40 +18,26 @@
 
 # ----- Global Variables Start -----
 
-
-
 # Game board represented as a list of 9 elements
-game_board = ['-', '-', '-',
-              '-', '-', '-',
-              '-', '-', '-']
-
+game_board = ['-', '-', '-', '-', '-', '-', '-', '-', '-']
 
 # Boolean to track if the game is still in progress
 game_in_progress = True
 
-      
-# Function to display the current state of the game board
-def render_display():
-    for i in range(0, 9, 3):
-        print(game_board[i] + '|' + game_board[i+1] + '|' + game_board[i+2])
-    print()
-
-
-# Display the initial empty board
-render_display()
-
-
 # Variable to store the winner (either 'X' or 'O') or None if no winner
 game_winner = None
-
 
 # Variable to keep track of the current player ('X' or 'O')
 active_player = "X"
 
-
-
 # ----- Global Variables End -----
 
+
+# Function to display the current state of the game board
+def render_display():
+    for i in range(0, 9, 3):
+        print(game_board[i] + '|' + game_board[i + 1] + '|' + game_board[i + 2])
+    print()
 
 
 # Main function to start and control the flow of the game
@@ -59,7 +45,7 @@ def start_game():
     global game_in_progress, game_winner
 
     # Display the initial empty board
-    # render_display()
+    render_display()
 
     while game_in_progress:
         # Handle the turn of the current player
@@ -70,7 +56,7 @@ def start_game():
 
         # The game has ended
         if game_winner:
-            print(game_winner + ' won!')
+            print(f"{game_winner} won!")
             game_in_progress = False
         elif not game_in_progress and game_winner is None:
             print("It's a tie!")
@@ -78,31 +64,36 @@ def start_game():
         # Switch to the other player
         switch_player()
 
-    #  Handle a single turn for the given player
-    def process_turn(player):
-        print(f"{player}'s turn!")
-        
-        valid_move = False
-        while not valid_move:
-            position = input("Choose a position from 1 to 9: ")
 
-            # Ensure the player inputs a valid number
-            if position not in [str(i) for i in range(1, 10)]:
-                print("Invalid input. Please choose a valid position from 1 to 9.")
-                continue
-            
-            position = int(position) - 1
+# Handle a single turn for the given player
+def process_turn(player):
+    global game_board
+    print(f"{player}'s turn!")
 
-            # Check if the chosen position is available
+    valid_move = False
+    while not valid_move:
+        position = input("Choose a position from 1 to 9: ")
+
+        # Ensure the player inputs a valid number
+        if not position.isdigit():
+            print("Invalid input. Please enter a number from 1 to 9.")
+            continue
+
+        position = int(position) - 1
+
+        # Check if the chosen position is within the correct range and available
+        if 0 <= position < 9:
             if game_board[position] == "-":
                 valid_move = True
             else:
                 print('You can\'t go there, go again!')
+        else:
+            print("Invalid position. Please choose a number from 1 to 9.")
 
-        # Place the player's marker on the board
-        game_board[position] = player
-        # Display the updated board
-        render_display()
+    # Place the player's marker on the board
+    game_board[position] = player
+    # Display the updated board
+    render_display()
 
 
 # Check if the game is over due to a win or tie
@@ -153,7 +144,7 @@ def evaluate_columns():
     return None
 
 
-    # Check if any diagonal has all the same value and is not empty
+# Check if any diagonal has all the same value and is not empty
 def evaluate_diagonals():
     global game_in_progress
 
