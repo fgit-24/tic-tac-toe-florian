@@ -25,6 +25,10 @@ game_board = ['-', '-', '-',
               '-', '-', '-',
               '-', '-', '-']
 
+
+# Boolean to track if the game is still in progress
+game_in_progress = True
+
       
 # Function to display the current state of the game board
 
@@ -34,6 +38,10 @@ def current_state():
     print()
 
 current_state()
+
+
+# Variable to store the winner (either 'X' or 'O') or None if no winner
+game_winner = None
 
 
 # Variable to keep track of the current player ('X' or 'O')
