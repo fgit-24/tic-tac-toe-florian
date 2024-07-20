@@ -13,3 +13,12 @@
 ##### evaluate_diagonals: Check diagonals for a win.
 ### detect_tie: Check if the game is a tie.
 ## switch_player: Switch the current player.
+
+
+
+
+# Game board represented as a list of 9 elements
+game_board = ['-', '-', '-',
+              '-', '-', '-',
+              '-', '-', '-']
+
