@@ -103,6 +103,11 @@ def start_game():
         game_board[position] = player
         # Display the updated board
         render_display()
+        
+
+# Determine if there is a winner
+def find_winner():
+    global game_winner
 
 
 # Check if any row has all the same value and is not empty
