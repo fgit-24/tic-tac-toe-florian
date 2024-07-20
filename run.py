@@ -53,6 +53,10 @@ active_player = "X"
 
 
 
+# Handle a single turn for the given player
+def process_turn(player):
+    print(f"{player}'s turn!")
+
 valid_move = False
 while not valid_move:
     # Get user input for position
