@@ -56,7 +56,7 @@ active_player = "X"
 
 # Main function to start and control the flow of the game
 def start_game():
-
+    global game_in_progress, game_winner
 
     #  Handle a single turn for the given player
     def process_turn(player):
