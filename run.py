@@ -22,3 +22,11 @@ game_board = ['-', '-', '-',
               '-', '-', '-',
               '-', '-', '-']
 
+      
+# Function to display the current state of the game board
+
+def current_state():
+    for i in range(0, 9, 3):
+        print(game_board[i] + '|' + game_board[i + 1] + '|' + game_board[i + 2])
+    print()        
+
