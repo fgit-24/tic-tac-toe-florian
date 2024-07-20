@@ -103,11 +103,24 @@ def start_game():
         game_board[position] = player
         # Display the updated board
         render_display()
-        
+
 
 # Determine if there is a winner
 def find_winner():
     global game_winner
+
+    # Check for a win in rows, columns, and diagonals
+    row_victory = evaluate_rows()
+    column_victory = evaluate_columns()
+    diagonal_victory = evaluate_diagonals()
+
+    # Set the winner if there is one
+    if row_victory:
+        game_winner = row_victory
+    elif column_victory:
+        game_winner = column_victory
+    elif diagonal_victory:
+        game_winner = diagonal_victory
 
 
 # Check if any row has all the same value and is not empty
