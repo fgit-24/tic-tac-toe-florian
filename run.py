@@ -31,13 +31,14 @@ game_in_progress = True
 
       
 # Function to display the current state of the game board
-
-def current_state():
+def render_display():
     for i in range(0, 9, 3):
-        print(game_board[i] + '|' + game_board[i + 1] + '|' + game_board[i + 2])
+        print(game_board[i] + '|' + game_board[i+1] + '|' + game_board[i+2])
     print()
 
-current_state()
+
+# Display the initial empty board
+render_display()
 
 
 # Variable to store the winner (either 'X' or 'O') or None if no winner
@@ -57,33 +58,36 @@ active_player = "X"
 def start_game():
 
 
-# Handle a single turn for the given player
-def process_turn(player):
-    print(f"{player}'s turn!")
+    #  Handle a single turn for the given player
+    def process_turn(player):
+        print(f"{player}'s turn!")
+        
+        valid_move = False
+        while not valid_move:
+            position = input("Choose a position from 1 to 9: ")
 
+            # Ensure the player inputs a valid number
+            if position not in [str(i) for i in range(1, 10)]:
+                print("Invalid input. Please choose a valid position from 1 to 9.")
+                continue
+            
+            position = int(position) - 1
 
-valid_move = False
-while not valid_move:
-    # Get user input for position
-    postition = input("Enter a number between 1 and 9: ")
+            # Check if the chosen position is available
+            if game_board[position] == "-":
+                valid_move = True
+            else:
+                print('You can\'t go there, go again!')
 
-    # Ensure the player inputs a valid number
-    if position not in [str(i) for i in range(1, 10)]:
-        print("Invalid input. Please choose a valid position from 1 to 9.")
-        continue
+        # Place the player's marker on the board
+        game_board[position] = player
+        # Display the updated board
+        render_display()
 
-    # -1 Because our list starts with the index of 0
-    position = int(position) - 1
-
-    # Check if the chosen position is available
-    if game_board[position] == "-":
-        valid_move = True
-    else:
-        print('You can\'t go there, go again!')
-
-    # Place the player's marker on the board
-    game_board[position] = player
-    # Display the updated board
+# Flips player, after players turn
+def switch_player():
+    global active_player
+    active_player = 'O' if active_player == 'X' else 'X'
 
 
 # Start the game
