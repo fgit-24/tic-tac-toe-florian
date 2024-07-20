@@ -53,9 +53,14 @@ active_player = "X"
 
 
 
+# Main function to start and control the flow of the game
+def start_game():
+
+
 # Handle a single turn for the given player
 def process_turn(player):
     print(f"{player}'s turn!")
+
 
 valid_move = False
 while not valid_move:
@@ -79,3 +84,7 @@ while not valid_move:
     # Place the player's marker on the board
     game_board[position] = player
     # Display the updated board
+
+
+# Start the game
+start_game()
