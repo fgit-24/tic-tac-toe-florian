@@ -58,6 +58,26 @@ active_player = "X"
 def start_game():
     global game_in_progress, game_winner
 
+    # Display the initial empty board
+    # render_display()
+
+    while game_in_progress:
+        # Handle the turn of the current player
+        process_turn(active_player)
+
+        # Check if the game has been won or is a tie
+        determine_if_game_finished()
+
+        # The game has ended
+        if game_winner:
+            print(game_winner + ' won!')
+            game_in_progress = False
+        elif not game_in_progress and game_winner is None:
+            print("It's a tie!")
+
+        # Switch to the other player
+        switch_player()
+
     #  Handle a single turn for the given player
     def process_turn(player):
         print(f"{player}'s turn!")
