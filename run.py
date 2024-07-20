@@ -165,6 +165,13 @@ def evaluate_diagonals():
     return None
 
 
+# Checks if there is a tie
+def detect_tie():
+    global game_in_progress
+    if "-" not in game_board:
+        game_in_progress = False
+
+
 # Flips player, after players turn
 def switch_player():
     global active_player
