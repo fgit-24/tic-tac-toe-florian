@@ -105,6 +105,12 @@ def start_game():
         render_display()
 
 
+# Check if the game is over due to a win or tie
+def determine_if_game_finished():
+    find_winner()
+    detect_tie()
+
+
 # Determine if there is a winner
 def find_winner():
     global game_winner
