@@ -32,7 +32,6 @@ active_player = "X"
 
 # ----- Global Variables End -----
 
-
 print("""
 Hey internet-traveler, it's great to have you!
 
@@ -73,7 +72,9 @@ Instructions:
 
 3. Enter the cell number where you want to place your mark.
 
-4. The first player to get three in a row wins. If the board is full and no one has three in a row, it's a draw.
+4. Type 'reset' at any time to restart the game.
+
+5. The first player to get three in a row wins. If the board is full and no one has three in a row, it's a draw.
 
 Enjoy the game!
 """)
@@ -86,6 +87,18 @@ def render_display():
     print()
 
 
+# Function to reset the game state
+def reset_game():
+    global game_board, game_in_progress, game_winner, active_player
+    game_board = ['-', '-', '-', '-', '-', '-', '-', '-', '-']
+    game_in_progress = True
+    game_winner = None
+    active_player = "X"
+    print("The game has been reset!")
+    # Show the empty board after reset
+    render_display()
+
+
 # Main function to start and control the flow of the game
 def start_game():
     global game_in_progress, game_winner
@@ -93,7 +106,18 @@ def start_game():
     # Display the initial empty board
     render_display()
 
-    while game_in_progress:
+    while True:  # Keep the game running indefinitely until user decides to exit
+        if not game_in_progress:  # If game is over, prompt for a reset or exit
+            choice = input("Game over. Type 'reset' to start a new game or 'exit' to quit: ").strip().lower()
+            if choice == 'reset':
+                reset_game()
+                continue
+            elif choice == 'exit':
+                break
+            else:
+                print("Invalid input. Type 'reset' to start a new game or 'exit' to quit.")
+                continue
+
         # Handle the turn of the current player
         process_turn(active_player)
 
@@ -118,7 +142,12 @@ def process_turn(player):
 
     valid_move = False
     while not valid_move:
-        position = input("Choose a position from 1 to 9: ")
+        position = input("Choose a position from 1 to 9 or type 'reset' to restart: ").strip().lower()
+
+        # Check if the user wants to reset the game
+        if position == 'reset':
+            reset_game()
+            return
 
         # Ensure the player inputs a valid number
         if not position.isdigit():
