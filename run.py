@@ -59,6 +59,27 @@ See you at my next awesome project!
 """)
 
 
+print("""
+Instructions:
+
+1. The game board is a 3x3 grid with cells numbered 1 to 9:
+
+   1 | 2 | 3
+  ---|---|---
+   4 | 5 | 6
+  ---|---|---
+   7 | 8 | 9
+
+2. Players take turns to place their marks (X or O) on the board. 
+
+3. Enter the cell number where you want to place your mark.
+
+4. The first player to get three in a row wins. If the board is full and no one has three in a row, it's a draw.
+
+Enjoy the game!
+""")
+
+
 # Function to display the current state of the game board
 def render_display():
     for i in range(0, 9, 3):
