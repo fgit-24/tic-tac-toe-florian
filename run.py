@@ -1,19 +1,18 @@
 # High-level overview
 
 # Display
-## render_display: Function to show the current state of the game board.
+# render_display: Function to show the current state of the game board.
 
 # Game Dynamics
-## start_game: Main function to initiate and control the flow of the game.
-## process_turn: Manage each player's turn.
-## determine_if_game_finished: Determine if the game has ended.
-#### find_winner: Check if there is a winner.
-##### evaluate_rows: Check rows for a win.
-##### evaluate_columns: Check columns for a win.
-##### evaluate_diagonals: Check diagonals for a win.
-### detect_tie: Check if the game is a tie.
-## switch_player: Switch the current player.
-
+# start_game: Main function to initiate and control the flow of the game.
+# process_turn: Manage each player's turn.
+# determine_if_game_finished: Determine if the game has ended.
+# find_winner: Check if there is a winner.
+# evaluate_rows: Check rows for a win.
+# evaluate_columns: Check columns for a win.
+# evaluate_diagonals: Check diagonals for a win.
+# detect_tie: Check if the game is a tie.
+# switch_player: Switch the current player.
 
 
 # ----- Global Variables Start -----
@@ -35,16 +34,18 @@ active_player = "X"
 print("""
 Hey internet-traveler, it's great to have you!
 
-Here you can experience an epic one-on-one tic-tac-toe battle with, or against, your partner or friend! This game is designed to help you with the great decisions in life!
+Here you can experience an epic one-on-one tic-tac-toe battle with, or against,
+    your partner or friend!
+    This game is designed to help you with the great decisions in life!
 
 - You don't know where to book the next vacation?
-    The winner decides!
+  The winner decides!
 
 - You don't know what to have for dinner?
-    It's up to the winner to decide!
+  It's up to the winner to decide!
 
 - You are not sure if you want to marry or not?
-    Well, you know now how it works!
+  Well, you know now how it works!
 
 Enjoy this epic game, share it everywhere, and most importantly, have fun!
 
@@ -68,13 +69,14 @@ Instructions:
   ---|---|---
    7 | 8 | 9
 
-2. Players take turns to place their marks (X or O) on the board. 
+2. Players take turns to place their marks (X or O) on the board.
 
 3. Enter the cell number where you want to place your mark.
 
 4. Type 'reset' at any time to restart the game.
 
-5. The first player to get three in a row wins. If the board is full and no one has three in a row, it's a draw.
+5. The first player to get three in a row wins.
+   If the board is full and no one has three in a row, it's a draw.
 
 Enjoy the game!
 """)
@@ -83,7 +85,7 @@ Enjoy the game!
 # Function to display the current state of the game board
 def render_display():
     for i in range(0, 9, 3):
-        print(game_board[i] + '|' + game_board[i + 1] + '|' + game_board[i + 2])
+        print('|'.join(game_board[i:i+3]))
     print()
 
 
@@ -106,16 +108,19 @@ def start_game():
     # Display the initial empty board
     render_display()
 
-    while True:  # Keep the game running indefinitely until user decides to exit
+    # Keep the game running indefinitely until user decides to exit
+    while True:
         if not game_in_progress:  # If game is over, prompt for a reset or exit
-            choice = input("Game over. Type 'reset' to start a new game or 'exit' to quit: ").strip().lower()
+            choice = input("Game over. Type 'reset' to start a new game: ")
+            choice = choice.strip().lower()
             if choice == 'reset':
                 reset_game()
                 continue
             elif choice == 'exit':
                 break
             else:
-                print("Invalid input. Type 'reset' to start a new game or 'exit' to quit.")
+                print("Invalid input.")
+                print("Type 'reset' to start a new game or 'exit' to quit.")
                 continue
 
         # Handle the turn of the current player
@@ -142,7 +147,10 @@ def process_turn(player):
 
     valid_move = False
     while not valid_move:
-        position = input("Choose a position from 1 to 9 or type 'reset' to restart: ").strip().lower()
+        prompt = "Choose a position from 1 to 9 or type 'reset' to restart: "
+        raw_input = input(prompt)
+        stripped_input = raw_input.strip()
+        position = stripped_input.lower()
 
         # Check if the user wants to reset the game
         if position == 'reset':
@@ -156,7 +164,7 @@ def process_turn(player):
 
         position = int(position) - 1
 
-        # Check if the chosen position is within the correct range and available
+        # Check if position is valid and available
         if 0 <= position < 9:
             if game_board[position] == "-":
                 valid_move = True
@@ -201,9 +209,13 @@ def evaluate_rows():
 
     rows = [(0, 1, 2), (3, 4, 5), (6, 7, 8)]
     for row in rows:
-        if game_board[row[0]] == game_board[row[1]] == game_board[row[2]] != '-':
+        mark1 = game_board[row[0]]
+        mark2 = game_board[row[1]]
+        mark3 = game_board[row[2]]
+
+        if mark1 == mark2 == mark3 and mark1 != '-':
             game_in_progress = False
-            return game_board[row[0]]
+            return mark1
     return None
 
 
@@ -213,9 +225,14 @@ def evaluate_columns():
 
     columns = [(0, 3, 6), (1, 4, 7), (2, 5, 8)]
     for col in columns:
-        if game_board[col[0]] == game_board[col[1]] == game_board[col[2]] != '-':
+        value1 = game_board[col[0]]
+        value2 = game_board[col[1]]
+        value3 = game_board[col[2]]
+
+    # Check if all three values are the same and not '-'
+        if value1 == value2 == value3 and value1 != '-':
             game_in_progress = False
-            return game_board[col[0]]
+            return value1
     return None
 
 
@@ -225,9 +242,14 @@ def evaluate_diagonals():
 
     diagonals = [(0, 4, 8), (2, 4, 6)]
     for diag in diagonals:
-        if game_board[diag[0]] == game_board[diag[1]] == game_board[diag[2]] != '-':
+        mark1 = game_board[diag[0]]
+        mark2 = game_board[diag[1]]
+        mark3 = game_board[diag[2]]
+
+        # Ensure the marks are the same and not '-'
+        if mark1 == mark2 == mark3 and mark1 != '-':
             game_in_progress = False
-            return game_board[diag[0]]
+            return mark1
     return None
 
 
