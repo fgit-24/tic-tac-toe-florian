@@ -36,8 +36,7 @@ active_player = "X"
 print("""
 Hey internet-traveler, it's great to have you!
 
-Here you can experience an epic one-on-one tic-tac-toe battle with, or against, your partner or friend!
-This game is designed to help you with the great decisions in life!
+Here you can experience an epic one-on-one tic-tac-toe battle with, or against, your partner or friend! This game is designed to help you with the great decisions in life!
 
 - You don't know where to book the next vacation?
     The winner decides!
