@@ -33,6 +33,32 @@ active_player = "X"
 # ----- Global Variables End -----
 
 
+print("""
+Hey internet-traveler, it's great to have you!
+
+Here you can experience an epic one-on-one tic-tac-toe battle with, or against, your partner or friend!
+This game is designed to help you with the great decisions in life!
+
+- You don't know where to book the next vacation?
+    The winner decides!
+
+- You don't know what to have for dinner?
+    It's up to the winner to decide!
+
+- You are not sure if you want to marry or not?
+    Well, you know now how it works!
+
+Enjoy this epic game, share it everywhere, and have fun!
+
+In addition, feel free to visit my profile on
+    [Snipverse.com](https://snipverse@fhaas.com)
+and follow me on
+    [LinkedIn](https://www.linkedin.com/in/-florian-haas-)!
+
+See you at my next awesome project!
+""")
+
+
 # Function to display the current state of the game board
 def render_display():
     for i in range(0, 9, 3):
