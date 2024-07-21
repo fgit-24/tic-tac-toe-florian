@@ -34,7 +34,7 @@ active_player = "X"
 print("""
 Hey internet-traveler, it's great to have you!
 
-Here you can experience an epic one-on-one tic-tac-toe battle with, or against,
+Here you can experience an epic one-on-one tic tac toe battle with, or against,
     your partner or friend!
     This game is designed to help you with the great decisions in life!
 
