@@ -47,10 +47,10 @@ Here you can experience an epic one-on-one tic-tac-toe battle with, or against, 
 - You are not sure if you want to marry or not?
     Well, you know now how it works!
 
-Enjoy this epic game, share it everywhere, and have fun!
+Enjoy this epic game, share it everywhere, and most importantly, have fun!
 
 In addition, feel free to visit my profile on
-    [Snipverse.com](https://snipverse@fhaas.com)
+    [Snipverse.com](https://snipverse.com/fhaas)
 and follow me on
     [LinkedIn](https://www.linkedin.com/in/-florian-haas-)!
 
