@@ -119,7 +119,7 @@ def start_game():
             elif choice == 'exit':
                 break
             else:
-                print("Invalid input.")
+                print(f"{choice} is and invalid input.")
                 print("Type 'reset' to start a new game or 'exit' to quit.")
                 continue
 
@@ -147,10 +147,7 @@ def process_turn(player):
 
     valid_move = False
     while not valid_move:
-        prompt = "Choose a position from 1 to 9 or type 'reset' to restart: "
-        raw_input = input(prompt)
-        stripped_input = raw_input.strip()
-        position = stripped_input.lower()
+        position = input("Choose a position from 1 to 9 or type 'reset' to restart: ").strip().lower()  # noqa
 
         # Check if the user wants to reset the game
         if position == 'reset':
@@ -159,7 +156,7 @@ def process_turn(player):
 
         # Ensure the player inputs a valid number
         if not position.isdigit():
-            print("Invalid input. Please enter a number from 1 to 9.")
+            print(f"{position} is an invalid input. Please enter a number from 1 to 9.")
             continue
 
         position = int(position) - 1
@@ -171,7 +168,7 @@ def process_turn(player):
             else:
                 print('You can\'t go there, go again!')
         else:
-            print("Invalid position. Please choose a number from 1 to 9.")
+            print(f"{position} is an invalid position. Please choose a number from 1 to 9.")
 
     # Place the player's marker on the board
     game_board[position] = player
