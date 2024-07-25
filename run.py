@@ -18,13 +18,6 @@ import os
 
 # ----- Global Variables Start -----
 
-def clear():
-    """
-    Clear function to clean-up the terminal so things don't get messy.
-    """
-    os.system("cls" if os.name == "nt" else "clear")
-
-
 # Game board represented as a list of 9 elements
 game_board = ['-', '-', '-', '-', '-', '-', '-', '-', '-']
 
@@ -39,7 +32,7 @@ active_player = "X"
 
 # ----- Global Variables End -----
 
-def welcome_text():
+def welcome_text_one():
     clear()
     print("Hey internet-traveler, it's great to have you!\n")
     print("Here you can experience an epic one-on-one tic tac toe battle with, ")
@@ -57,8 +50,12 @@ def welcome_text():
     print("Well, you know now how it works!")
     print("")
     input("\nPress ENTER to continue\n")
+    
+    welcome_text_two()
 
 
+def welcome_text_two():
+    clear()
     print("Enjoy this epic game, share it everywhere, and most importantly, have fun!")
     print("")
     print("In addition, feel free to visit my profile on")
@@ -70,6 +67,7 @@ def welcome_text():
     print("See you at my next awesome project!")
     input("\nPress ENTER to continue\n")
 
+    #Continue with instructions
     instructions()
 
   
@@ -121,6 +119,11 @@ def reset_game():
     render_display()
 
 
+# Clear function to clean-up the terminal so things don't get messy.
+def clear():
+    os.system("cls" if os.name == "nt" else "clear")
+
+
 # Main function to start and control the flow of the game
 def start_game():
     global game_in_progress, game_winner
@@ -129,20 +132,18 @@ def start_game():
     # Display the initial empty board
     render_display()
 
-    # Keep the game running indefinitely until user decides to exit
+    # Keep the game running indefinitely until user decides to restart
     while True:
-        if not game_in_progress:  # If game is over, prompt for a reset or exit
+        if not game_in_progress:  # If game is over, prompt for a reset
             choice = input("Game over. Type 'reset' to start a new game: ")
             clear()
             choice = choice.strip().lower()
             if choice == 'reset':
                 reset_game()
                 continue
-            elif choice == 'exit':
-                break
             else:
                 print(f"{choice} is an invalid input.")
-                print("Type 'reset' to start a new game or 'exit' to quit.")
+                print("Type 'reset' to start a new game.")
                 continue
 
         # Handle the turn of the current player
@@ -171,9 +172,9 @@ def process_turn(player):
     while not valid_move:
         prompt = "Choose a position from 1 to 9 or type 'reset' to restart: "
         raw_input = input(prompt)
-        clear()
         stripped_input = raw_input.strip()
         position = stripped_input.lower()
+        clear()
 
         # Check if the user wants to reset the game
         if position == 'reset':
@@ -291,4 +292,6 @@ def switch_player():
 
 if __name__ == "__main__":
     clear()
-    welcome_text()
+    welcome_text_one()
+    welcome_text_two()
+    instructions()
