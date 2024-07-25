@@ -1,3 +1,4 @@
+import os
 # High-level overview
 
 # Display
@@ -17,6 +18,13 @@
 
 # ----- Global Variables Start -----
 
+def clear():
+    """
+    Clear function to clean-up the terminal so things don't get messy.
+    """
+    os.system("cls" if os.name == "nt" else "clear")
+
+
 # Game board represented as a list of 9 elements
 game_board = ['-', '-', '-', '-', '-', '-', '-', '-', '-']
 
@@ -31,55 +39,67 @@ active_player = "X"
 
 # ----- Global Variables End -----
 
-print("""
-Hey internet-traveler, it's great to have you!
-
-Here you can experience an epic one-on-one tic tac toe battle with, or against,
-    your partner or friend!
-    This game is designed to help you with the great decisions in life!
-
-- You don't know where to book the next vacation?
-  The winner decides!
-
-- You don't know what to have for dinner?
-  It's up to the winner to decide!
-
-- You are not sure if you want to marry or not?
-  Well, you know now how it works!
-
-Enjoy this epic game, share it everywhere, and most importantly, have fun!
-
-In addition, feel free to visit my profile on
-    [Snipverse.com](https://snipverse.com/fhaas)
-and follow me on
-    [LinkedIn](https://www.linkedin.com/in/-florian-haas-)!
-
-See you at my next awesome project!
-""")
+def welcome_text():
+    clear()
+    print("Hey internet-traveler, it's great to have you!\n")
+    print("Here you can experience an epic one-on-one tic tac toe battle with, ")
+    print("or against, your partner or friend!\n")
+    print("")
+    print("This game is designed to help you with the great decisions in life!")
+    print("")
+    print("- You don't know where to book the next vacation?")
+    print("  The winner decides!")
+    print("")
+    print("- You don't know what to have for dinner?")
+    print("It's up to the winner to decide!")
+    print("")
+    print("- You are not sure if you want to marry or not?")
+    print("Well, you know now how it works!")
+    print("")
+    input("\nPress ENTER to continue\n")
 
 
-print("""
-Instructions:
+    print("Enjoy this epic game, share it everywhere, and most importantly, have fun!")
+    print("")
+    print("In addition, feel free to visit my profile on")
+    print("")
+    print("    [Snipverse.com](https://snipverse.com/fhaas)")
+    print("and follow me on")
+    print("    [LinkedIn](https://www.linkedin.com/in/-florian-haas-)!")
+    print("")
+    print("See you at my next awesome project!")
+    input("\nPress ENTER to continue\n")
 
-1. The game board is a 3x3 grid with cells numbered 1 to 9:
+    instructions()
 
-   1 | 2 | 3
-  ---|---|---
-   4 | 5 | 6
-  ---|---|---
-   7 | 8 | 9
+  
+def instructions():
+    clear()
+    print("Instructions:")
+    print("")
+    print("1. The game board is a 3x3 grid with cells numbered 1 to 9:")
+    print("")
+    print("    1 | 2 | 3")
+    print("   ---|---|---")
+    print("    4 | 5 | 6")
+    print("   ---|---|---")
+    print("    7 | 8 | 9")
+    print("")
+    print("2. Players take turns to place their marks (X or O) on the board.")
+    print("")
+    print("3. Enter the cell number where you want to place your mark.")
+    print("")
+    print("4. Type 'reset' at any time to restart the game.")
+    print("")
+    print("5. The first player to get three in a row wins.")
+    print("   If the board is full and no one has three in a row, it's a draw.")
+    print("")
+    print("Enjoy the game!")
+    print("")
+    input("\nPress ENTER to continue\n")
 
-2. Players take turns to place their marks (X or O) on the board.
-
-3. Enter the cell number where you want to place your mark.
-
-4. Type 'reset' at any time to restart the game.
-
-5. The first player to get three in a row wins.
-   If the board is full and no one has three in a row, it's a draw.
-
-Enjoy the game!
-""")
+    # Start the game
+    start_game()
 
 
 # Function to display the current state of the game board
@@ -104,6 +124,7 @@ def reset_game():
 # Main function to start and control the flow of the game
 def start_game():
     global game_in_progress, game_winner
+    clear()
 
     # Display the initial empty board
     render_display()
@@ -112,6 +133,7 @@ def start_game():
     while True:
         if not game_in_progress:  # If game is over, prompt for a reset or exit
             choice = input("Game over. Type 'reset' to start a new game: ")
+            clear()
             choice = choice.strip().lower()
             if choice == 'reset':
                 reset_game()
@@ -119,7 +141,7 @@ def start_game():
             elif choice == 'exit':
                 break
             else:
-                print(f"{choice} is and invalid input.")
+                print(f"{choice} is an invalid input.")
                 print("Type 'reset' to start a new game or 'exit' to quit.")
                 continue
 
@@ -147,7 +169,11 @@ def process_turn(player):
 
     valid_move = False
     while not valid_move:
-        position = input("Choose a position from 1 to 9 or type 'reset' to restart: ").strip().lower()  # noqa
+        prompt = "Choose a position from 1 to 9 or type 'reset' to restart: "
+        raw_input = input(prompt)
+        clear()
+        stripped_input = raw_input.strip()
+        position = stripped_input.lower()
 
         # Check if the user wants to reset the game
         if position == 'reset':
@@ -263,5 +289,6 @@ def switch_player():
     active_player = 'O' if active_player == 'X' else 'X'
 
 
-# Start the game
-start_game()
+if __name__ == "__main__":
+    clear()
+    welcome_text()
