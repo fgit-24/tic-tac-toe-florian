@@ -166,18 +166,20 @@ def start_game():
 # Handle a single turn for the given player
 def process_turn(player):
     global game_board
-    print(f"{player}'s turn!")
-
     valid_move = False
     while not valid_move:
+        clear()
+        print(f"{player}'s turn!")
+        render_display()
+
         prompt = "Choose a position from 1 to 9 or type 'reset' to restart: "
         raw_input = input(prompt)
         stripped_input = raw_input.strip()
         position = stripped_input.lower()
-        clear()
 
         # Check if the user wants to reset the game
         if position == 'reset':
+            clear()
             reset_game()
             return
 
@@ -195,8 +197,9 @@ def process_turn(player):
             else:
                 print('You can\'t go there, go again!')
         else:
-            print(f"{position} is an invalid position. Please choose a number from 1 to 9.")
+            print(f"{position + 1} is an invalid position. Please choose a number from 1 to 9.")
 
+    clear()
     # Place the player's marker on the board
     game_board[position] = player
     # Display the updated board
