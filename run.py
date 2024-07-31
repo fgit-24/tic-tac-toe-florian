@@ -1,4 +1,8 @@
 import os
+import colorama
+from colorama import Fore, Back, Style
+colorama.init(autoreset=True)
+
 # High-level overview
 
 # Display
@@ -154,7 +158,7 @@ def start_game():
 
         # The game has ended
         if game_winner:
-            print(f"{game_winner} won!")
+            print(Fore.GREEN + f"{game_winner} won!")
             game_in_progress = False
         elif not game_in_progress and game_winner is None:
             print("It's a tie!")
