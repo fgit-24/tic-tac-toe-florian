@@ -114,6 +114,24 @@ For the validation I've used [CI Python Linter](https://pep8ci.herokuapp.com/).
 ![PEP8 Python Validator](documentation/04-validation.png)
 
 
+### Scenarios
+
+#### Winning
+![Winning](documentation/05-win.png)
+
+#### Tie
+![Tie](documentation/06-tie.png)
+
+#### Wrong input during game
+![Wrong input during game](documentation/07-wrong-input-during-game.png)
+
+#### Wrong input after game
+![Wrong input after game](documentation/08-wrong-input-after-game.png)
+
+#### Reset
+![Reset](documentation/09-board-after-reset.png)
+
+
 ## Deployment
 
 Code Institute has provided a [template](https://github.com/Code-Institute-Org/python-essentials-template) to display the terminal view of this backend application in a modern web browser.
