@@ -97,7 +97,6 @@ def instructions():
     print("   If the board is full and no one has three in a row, it's a draw.")
     print("")
     print("Enjoy the game!")
-    print("")
     input("\nPress ENTER to continue\n")
 
     # Start the game
@@ -171,8 +170,8 @@ def start_game():
 def process_turn(player):
     global game_board
     valid_move = False
+    clear()
     while not valid_move:
-        clear()
         print(f"{player}'s turn!")
         render_display()
 
@@ -180,6 +179,7 @@ def process_turn(player):
         raw_input = input(prompt)
         stripped_input = raw_input.strip()
         position = stripped_input.lower()
+        clear()
 
         # Check if the user wants to reset the game
         if position == 'reset':
@@ -189,7 +189,10 @@ def process_turn(player):
 
         # Ensure the player inputs a valid number
         if not position.isdigit():
-            print(f"{position} is an invalid input. Please enter a number from 1 to 9.")
+            render_display()
+            print(Fore.RED + f"{position} is an invalid input. Please enter a number from 1 to 9.")
+            input('Press enter to continue.')
+            clear()
             continue
 
         position = int(position) - 1
@@ -199,9 +202,15 @@ def process_turn(player):
             if game_board[position] == "-":
                 valid_move = True
             else:
-                print('You can\'t go there, go again!')
+                render_display()
+                print(Fore.RED + 'You can\'t go there, go again!')
+                input('Press enter to continue.')
+                clear()
         else:
-            print(f"{position + 1} is an invalid position. Please choose a number from 1 to 9.")
+            render_display()
+            print(Fore.RED + f"{position + 1} is an invalid position. Please choose a number from 1 to 9.")
+            input('Press enter to continue.')
+            clear()
 
     clear()
     # Place the player's marker on the board
@@ -300,5 +309,3 @@ def switch_player():
 if __name__ == "__main__":
     clear()
     welcome_text_one()
-    welcome_text_two()
-    instructions()
