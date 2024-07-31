@@ -36,13 +36,15 @@ active_player = "X"
 
 # ----- Global Variables End -----
 
+
 def welcome_text_one():
     clear()
     print("Hey internet-traveler, it's great to have you!\n")
-    print("Here you can experience an epic one-on-one tic tac toe battle with, ")
-    print("or against, your partner or friend!\n")
+    print("Here you can experience an epic one-on-one tic tac toe battle ")
+    print("with, or against, your partner or friend!\n")
     print("")
-    print("This game is designed to help you with the great decisions in life!")
+    print("This game is designed to help you ")
+    print("with the great decisions in life!")
     print("")
     print("- You don't know where to book the next vacation?")
     print("  The winner decides!")
@@ -54,13 +56,14 @@ def welcome_text_one():
     print("Well, you know now how it works!")
     print("")
     input("\nPress ENTER to continue\n")
-    
+
     welcome_text_two()
 
 
 def welcome_text_two():
     clear()
-    print("Enjoy this epic game, share it everywhere, and most importantly, have fun!")
+    print("Enjoy this epic game, share it everywhere, ")
+    print("and most importantly, have fun!")
     print("")
     print("In addition, feel free to visit my profile on")
     print("")
@@ -71,10 +74,10 @@ def welcome_text_two():
     print("See you at my next awesome project!")
     input("\nPress ENTER to continue\n")
 
-    #Continue with instructions
+    # Continue with instructions
     instructions()
 
-  
+
 def instructions():
     clear()
     print("Instructions:")
@@ -94,7 +97,8 @@ def instructions():
     print("4. Type 'reset' at any time to restart the game.")
     print("")
     print("5. The first player to get three in a row wins.")
-    print("   If the board is full and no one has three in a row, it's a draw.")
+    print("   If the board is full and no one has three in a row, ")
+    print("   it's a draw.")
     print("")
     print("Enjoy the game!")
     input("\nPress ENTER to continue\n")
@@ -190,7 +194,8 @@ def process_turn(player):
         # Ensure the player inputs a valid number
         if not position.isdigit():
             render_display()
-            print(Fore.RED + f"{position} is an invalid input. Please enter a number from 1 to 9.")
+            print(Fore.RED + f"{position} is an invalid input. "
+                  "Please enter a number from 1 to 9.")
             input('Press enter to continue.')
             clear()
             continue
@@ -208,7 +213,9 @@ def process_turn(player):
                 clear()
         else:
             render_display()
-            print(Fore.RED + f"{position + 1} is an invalid position. Please choose a number from 1 to 9.")
+            print(Fore.RED + f"{position + 1} is an invalid position. "
+                             "Please choose a number "
+                             "from 1 to 9.")
             input('Press enter to continue.')
             clear()
 
